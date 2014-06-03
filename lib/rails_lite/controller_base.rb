@@ -19,6 +19,7 @@ class ControllerBase
     unless already_built_response?
       @res.content_type = type
       @res.body = content
+      session.store_session(@res)
       @already_built_response = true
     else
       raise "double render error"      
@@ -35,6 +36,7 @@ class ControllerBase
     unless already_built_response?
       @res.status = 302
       @res["location"] = url
+      session.store_session(@res)
       @already_built_response = true
     else
       raise "double render error"
@@ -52,7 +54,7 @@ class ControllerBase
 
   # method exposing a `Session` object
   def session
-    
+    @session ||= Session.new(@req)
   end
 
   # use this with the router to call action_name (:index, :show, :create...)
