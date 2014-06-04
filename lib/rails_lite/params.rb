@@ -74,6 +74,7 @@ class Params
     merged_hash
   end
 
+  #old code for nostalgia purposes
   def rec_builder(array, value)
     hash = {}
 
@@ -84,6 +85,7 @@ class Params
     end
     hash
   end
+  #end old code
 
   # this should return an array
   # user[address][street] should return ['user', 'address', 'street']

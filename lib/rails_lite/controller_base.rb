@@ -59,7 +59,12 @@ class ControllerBase
   end
 
   # use this with the router to call action_name (:index, :show, :create...)
-  def invoke_action(name)
-    
+  def invoke_action(name, pattern, con_class, action)
+    if Router.new.send(name, pattern, con_class, action)
+      #pattern, controller_class, action_name
+      #/^\/users$/ , DummyController , :index
+    else
+      render
+    end
   end
 end
